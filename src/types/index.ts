@@ -19,3 +19,12 @@ export interface Message {
   customer?: Customer;
 }
 
+export interface Agent {
+  id: string;
+  name: string;
+  email: string;
+  status: 'online' | 'offline' | 'busy';
+  created_at: string;
+}
+
+x
