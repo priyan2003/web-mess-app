@@ -152,4 +152,15 @@ const Index = () => {
     }
   };
 
+  const filteredMessages = messages.filter((message) => {
+    const matchesSearch = 
+      message.content.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      message.customer?.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      message.customer?.email?.toLowerCase().includes(searchQuery.toLowerCase());
+    
+    const matchesFilter = filterStatus === 'all' || message.status === filterStatus;
+
+    return matchesSearch && matchesFilter;
+  });
+
   
