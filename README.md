@@ -62,3 +62,8 @@ web-message-app/
 └── vite.config.ts
 ```
 ---
+## 🌐 Deployment
+
+This project is deployed on **Vercel**.
+
+🔗 **Live Demo:** [https://web-mess-app-priyanshu.vercel.app/](https://web-mess-app-priyanshu.vercel.app/)
