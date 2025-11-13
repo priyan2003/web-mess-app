@@ -49,14 +49,16 @@ Built with **React, TypeScript, Vite, Tailwind CSS, and Supabase**, the system e
 ---
 
 ## 🗂️ Project Structure
-### 🧩 Folder Overview
-
-| Folder | Description |
-|:-------|:-------------|
-| **src/components** | Contains reusable UI elements like chat, sidebar, and search components. |
-| **src/pages** | Includes main application views such as `AgentDashboard` and `MessageView`. |
-| **src/hooks** | Custom React hooks for handling real-time updates and message fetching. |
-| **src/utils** | Utility functions such as urgency detection and canned responses. |
-| **src/lib** | Configuration and setup (e.g., Supabase client, constants). |
-| **public** | Static assets (images, icons, etc.). |
-
+```
+web-message-app/
+├── src/
+│ ├── components/ # Reusable UI components (chat, search, sidebar, etc.)
+│ ├── pages/ # Main views (AgentDashboard, MessageView)
+│ ├── hooks/ # Custom hooks (real-time updates, message fetching)
+│ ├── utils/ # Helper functions (urgency detection, canned responses)
+│ └── lib/ # Database/config setup (Supabase client, constants)
+├── public/
+├── package.json
+└── vite.config.ts
+```
+---
