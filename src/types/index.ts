@@ -27,4 +27,13 @@ export interface Agent {
   created_at: string;
 }
 
-x
+export interface CannedResponse {
+  id: string;
+  title: string;
+  content: string;
+  category: string;
+  usage_count: number;
+  created_at: string;
+}
+
+
