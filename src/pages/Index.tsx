@@ -94,4 +94,62 @@ const Index = () => {
     }
   };
 
+  const handleSendResponse = async (content: string) => {
+    if (!selectedMessage) return;
+
+    try {
+      // For demo purposes, create a demo agent if none exists
+      let { data: agents } = await supabase
+        .from('agents')
+        .select('id')
+        .limit(1)
+        .maybeSingle();
+
+      if (!agents) {
+        const { data: newAgent } = await supabase
+          .from('agents')
+          .insert({
+            name: 'Demo Agent',
+            email: 'agent@branch.com',
+            status: 'online'
+          })
+          .select('id')
+          .single();
+        
+        agents = newAgent;
+      }
+
+      if (!agents) {
+        toast.error('Failed to create agent');
+        return;
+      }
+
+      const { error } = await supabase
+        .from('message_responses')
+        .insert({
+          message_id: selectedMessage.id,
+          agent_id: agents.id,
+          content: content,
+        });
+
+      if (error) throw error;
+
+      // Update message status
+      await supabase
+        .from('messages')
+        .update({
+          status: 'in_progress',
+          responded_at: new Date().toISOString(),
+        })
+        .eq('id', selectedMessage.id);
+
+      toast.success('Response sent');
+      loadMessageResponses(selectedMessage.id);
+      loadMessages();
+    } catch (error) {
+      console.error('Error sending response:', error);
+      toast.error('Failed to send response');
+    }
+  };
+
   
