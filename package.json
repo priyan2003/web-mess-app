@@ -82,6 +82,9 @@
     "vite": "^5.4.19"
   },
   "overrides": {
-    "date-fns": "3.6.0"
+    "date-fns": "3.6.0",
+    "react-day-picker": {
+      "date-fns": "3.6.0"
+    }
   }
 }
