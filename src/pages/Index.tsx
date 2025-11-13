@@ -163,4 +163,17 @@ const Index = () => {
     return matchesSearch && matchesFilter;
   });
 
-  
+  const sortedMessages = [...filteredMessages].sort((a, b) => {
+    const urgencyOrder = { high: 0, medium: 1, low: 2 };
+    const urgencyDiff = urgencyOrder[a.urgency_level] - urgencyOrder[b.urgency_level];
+    if (urgencyDiff !== 0) return urgencyDiff;
+    return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
+  });
+
+  return (
+
+  );
+};
+
+export default Index;
+ 
