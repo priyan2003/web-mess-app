@@ -55,4 +55,24 @@ const Index = () => {
     };
   };
 
+ const loadMessages = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('messages')
+        .select(`
+          *,
+          customer:customers(*)
+        `)
+        .order('created_at', { ascending: false });
+
+      if (error) throw error;
+      setMessages((data || []) as Message[]);
+    } catch (error) {
+      console.error('Error loading messages:', error);
+      toast.error('Failed to load messages');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   
