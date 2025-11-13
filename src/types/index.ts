@@ -7,3 +7,15 @@ export interface Customer {
   created_at: string;
 }
 
+export interface Message {
+  id: string;
+  customer_id: string;
+  content: string;
+  urgency_level: 'low' | 'medium' | 'high';
+  status: 'new' | 'in_progress' | 'resolved';
+  created_at: string;
+  responded_at?: string;
+  updated_at: string;
+  customer?: Customer;
+}
+
