@@ -1,73 +1,51 @@
-# React + TypeScript + Vite
+# 💬 Customer Support Messaging Web App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-featured **messaging web application** designed for customer support teams to handle and respond to messages from customers efficiently.  
+Built with **React, TypeScript, Vite, Tailwind CSS, and Supabase**, the system enables multiple agents to log in simultaneously and manage real-time customer conversations from a unified dashboard.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## React Compiler
+### 🧑‍💼 Agent Portal
+- A dedicated interface for **support agents** to view and respond to incoming customer messages.
+- Supports **multiple concurrent agents** — all agents can view and reply to messages in real time.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 📩 Message Management
+- Stores real customer messages from a provided **CSV dataset** in a connected database.
+- Displays all messages with details like customer name, timestamp, and message content.
+- Agents can **respond directly** from the dashboard, simulating a two-way communication system.
 
-## Expanding the ESLint configuration
+### ⚡ Real-Time Updates
+- The UI automatically updates with **new incoming messages** without requiring a manual refresh.
+- Built using **React Query** and **Supabase real-time listeners** (or a simulated WebSocket approach).
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### 🔍 Search & Filtering
+- Agents can **search messages or customers** based on keywords.
+- Helps quickly locate specific queries or follow-up messages.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### 🚨 Urgency Detection
+- Highlights messages that need **immediate attention** (e.g., “loan approval,” “disbursement,” etc.).
+- Uses keyword-based heuristics or priority tagging to surface critical inquiries.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### 🧠 Customer Insights
+- Displays **additional context** about customers, such as:
+  - Previous interaction history  
+  - Profile or account details (mocked or fetched from external APIs)
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### 💬 Canned Responses
+- Pre-configured **stock message templates** for quick replies to common queries.
+- Agents can choose from a dropdown of canned responses and send them instantly.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 🧱 Technology Stack
+| Layer | Technologies |
+|-------|---------------|
+| **Frontend** | React, TypeScript, Vite |
+| **Styling** | Tailwind CSS, Shadcn/UI, Radix UI |
+| **Data Layer** | Supabase / PostgreSQL (for messages & customer data) |
+| **State Management** | React Query, React Hook Form, Zod |
+| **Icons & Components** | Lucide React, Sonner (toasts), Recharts (optional analytics) |
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 🗂️ Project Structure
