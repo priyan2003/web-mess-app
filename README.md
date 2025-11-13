@@ -51,11 +51,11 @@ Built with **React, TypeScript, Vite, Tailwind CSS, and Supabase**, the system e
 ## 🗂️ Project Structure
 web-message-app/
 ├── src/
-│ ├── components/ # Reusable UI components (chat, search, sidebar, etc.)
-│ ├── pages/ # Main views (AgentDashboard, MessageView)
-│ ├── hooks/ # Custom hooks (real-time updates, message fetching)
-│ ├── utils/ # Helper functions (urgency detection, canned responses)
-│ └── lib/ # Database/config setup (Supabase client, constants)
+│   ├── components/        # Reusable UI components (chat, search, sidebar, etc.)
+│   ├── pages/             # Main views (AgentDashboard, MessageView)
+│   ├── hooks/             # Custom hooks (real-time updates, message fetching)
+│   ├── utils/             # Helper functions (urgency detection, canned responses)
+│   └── lib/               # Database/config setup (Supabase client, constants)
 ├── public/
 ├── package.json
 └── vite.config.ts
