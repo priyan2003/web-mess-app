@@ -36,4 +36,11 @@ export interface CannedResponse {
   created_at: string;
 }
 
-
+export interface MessageResponse {
+  id: string;
+  message_id: string;
+  agent_id: string;
+  content: string;
+  created_at: string;
+  agent?: Agent;
+}
