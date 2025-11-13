@@ -171,7 +171,87 @@ const Index = () => {
   });
 
   return (
+        <div className="min-h-screen bg-background">
+      <header className="border-b bg-card">
+        <div className="container mx-auto px-4 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <MessageSquare className="h-8 w-8 text-primary" />
+              <h1 className="text-2xl font-bold">Branch Support Portal</h1>
+            </div>
+            <div className="flex items-center gap-2">
+              <Button variant="outline" onClick={() => setShowImportDialog(true)}>
+                <Upload className="h-4 w-4 mr-2" />
+                Import CSV
+              </Button>
+            </div>
+          </div>
+        </div>
+      </header>
 
+      <div className="container mx-auto px-4 py-6">
+        <div className="grid grid-cols-12 gap-6 h-[calc(100vh-140px)]">
+          {/* Message List */}
+          <Card className="col-span-4 flex flex-col">
+            <div className="p-4 border-b space-y-4">
+              <SearchBar
+                value={searchQuery}
+                onChange={setSearchQuery}
+                placeholder="Search messages or customers..."
+              />
+              <Tabs value={filterStatus} onValueChange={(v) => setFilterStatus(v as any)}>
+                <TabsList className="w-full">
+                  <TabsTrigger value="all" className="flex-1">All</TabsTrigger>
+                  <TabsTrigger value="new" className="flex-1">New</TabsTrigger>
+                  <TabsTrigger value="in_progress" className="flex-1">Active</TabsTrigger>
+                  <TabsTrigger value="resolved" className="flex-1">Resolved</TabsTrigger>
+                </TabsList>
+              </Tabs>
+            </div>
+            <div className="flex-1 overflow-hidden">
+              {loading ? (
+                <div className="flex items-center justify-center h-full">
+                  <p className="text-muted-foreground">Loading messages...</p>
+                </div>
+              ) : (
+                <MessageList
+                  messages={sortedMessages}
+                  selectedMessageId={selectedMessage?.id}
+                  onSelectMessage={setSelectedMessage}
+                />
+              )}
+            </div>
+          </Card>
+
+          {/* Message Detail */}
+          <Card className="col-span-5 overflow-hidden">
+            <MessageDetail
+              message={selectedMessage}
+              responses={messageResponses}
+              onSendResponse={handleSendResponse}
+              onUseCannedResponse={() => setShowCannedDialog(true)}
+            />
+          </Card>
+
+          {/* Customer Profile */}
+          <div className="col-span-3 space-y-4">
+            <CustomerProfile customer={selectedMessage?.customer || null} />
+          </div>
+        </div>
+      </div>
+
+      <CannedResponsesDialog
+        open={showCannedDialog}
+        onOpenChange={setShowCannedDialog}
+        onSelectResponse={(content) => handleSendResponse(content)}
+      />
+
+      <CSVImport
+        open={showImportDialog}
+        onOpenChange={setShowImportDialog}
+        onImportComplete={() => loadMessages()}
+      />
+    </div>
   );
 };
 
