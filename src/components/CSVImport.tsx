@@ -43,7 +43,19 @@ export const CSVImport = ({ open, onOpenChange, onImportComplete }: CSVImportPro
     });
   };
 
-  
+  const detectUrgency = (content: string): 'low' | 'medium' | 'high' => {
+    const lowerContent = content.toLowerCase();
+    const highUrgencyKeywords = ['urgent', 'immediately', 'asap', 'loan approval', 'disbursement', 'when will', 'not received'];
+    const mediumUrgencyKeywords = ['account', 'update', 'change', 'help', 'issue', 'problem'];
+
+    if (highUrgencyKeywords.some(keyword => lowerContent.includes(keyword))) {
+      return 'high';
+    }
+    if (mediumUrgencyKeywords.some(keyword => lowerContent.includes(keyword))) {
+      return 'medium';
+    }
+    return 'low';
+  };
 
   const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
