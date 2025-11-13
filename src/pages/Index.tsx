@@ -75,4 +75,23 @@ const Index = () => {
     }
   };
 
+  const loadMessageResponses = async (messageId: string) => {
+    try {
+      const { data, error } = await supabase
+        .from('message_responses')
+        .select(`
+          *,
+          agent:agents(*)
+        `)
+        .eq('message_id', messageId)
+        .order('created_at', { ascending: true });
+
+      if (error) throw error;
+      setMessageResponses((data || []) as MessageResponse[]);
+    } catch (error) {
+      console.error('Error loading responses:', error);
+      toast.error('Failed to load responses');
+    }
+  };
+
   
